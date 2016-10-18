@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.9" jmeter="3.0 r1743807">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="sncenter_list_file" elementType="Argument">
+            <stringProp name="Argument.name">sncenter_list_file</stringProp>
+            <stringProp name="Argument.value">${__P(sncenter_list_file,C:\Users\zhangmin\Desktop\sncenter_list.csv)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="natserver_list_file" elementType="Argument">
+            <stringProp name="Argument.name">natserver_list_file</stringProp>
+            <stringProp name="Argument.value">${__P(natserver_list_file,C:\Users\zhangmin\Desktop\natserver_list.csv)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="try_times" elementType="Argument">
+            <stringProp name="Argument.name">try_times</stringProp>
+            <stringProp name="Argument.value">${__P(try_times,6)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="timer" elementType="Argument">
+            <stringProp name="Argument.name">timer</stringProp>
+            <stringProp name="Argument.value">${__P(timer,500)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="peer_id" elementType="Argument">
+            <stringProp name="Argument.name">peer_id</stringProp>
+            <stringProp name="Argument.value">1234567890123456</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="other_peer_id" elementType="Argument">
+            <stringProp name="Argument.name">other_peer_id</stringProp>
+            <stringProp name="Argument.value">1234567890123457</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1476762872000</longProp>
+        <longProp name="ThreadGroup.end_time">1476762872000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="delete natserver ip list file" enabled="true">
+          <stringProp name="BeanShellSampler.query">File file = new File(bsh.args[0]);
+if(file.exists()) {
+	file.delete();	
+}</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters">${natserver_list_file}</stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="work " enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1476677628000</longProp>
+        <longProp name="ThreadGroup.end_time">1476677628000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="sncenter list file config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">utf-8</stringProp>
+          <stringProp name="filename">${sncenter_list_file}</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">sc_ip_f,sc_port_f,sc_comment</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="初始化循环条件" enabled="true">
+          <stringProp name="BeanShellSampler.query">vars.put(&quot;left_times&quot;,bsh.args[0]);
+vars.put(&quot;continue&quot;, &quot;true&quot;);
+vars.put(&quot;fail_times&quot;, &quot;0&quot;);</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times}</stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
+          <stringProp name="WhileController.condition">${continue}</stringProp>
+        </WhileController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="循环次数减一" enabled="true">
+            <stringProp name="BeanShellSampler.query">int leftTimes = Integer.parseInt(vars.get(&quot;left_times&quot;));
+leftTimes--;
+vars.put(&quot;left_times&quot;,leftTimes + &quot;&quot;);
+
+boolean isContinue = Boolean.parseBoolean(vars.get(&quot;continue&quot;));
+isContinue = false;
+vars.put(&quot;continue&quot;, isContinue + &quot;&quot;);
+
+vars.put(&quot;new_loop&quot;, &quot;true&quot;);</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="监听区域" enabled="true"/>
+          <hashTree>
+            <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="监听是否失败" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">int leftTimes =Integer.parseInt(vars.get(&quot;left_times&quot;));
+int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
+boolean isContinue = Boolean.parseBoolean(vars.get(&quot;continue&quot;));
+boolean isNewLoop = Boolean.parseBoolean(vars.get(&quot;new_loop&quot;));
+
+if(!sampleResult.isSuccessful()) {
+	if(isNewLoop) {
+		failTimes++;
+		vars.put(&quot;new_loop&quot;, &quot;false&quot;);
+	}
+	isContinue = true;
+}
+if(leftTimes &lt;= 0) {
+	isContinue = false;	
+}
+
+vars.put(&quot;continue&quot;, isContinue + &quot;&quot;);
+vars.put(&quot;fail_times&quot;, failTimes + &quot;&quot;);</stringProp>
+            </BeanShellListener>
+            <hashTree/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="获取并存储natserver" enabled="true"/>
+            <hashTree>
+              <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="UDP_GetNcList_${sc_ip_f}_${sc_comment}" enabled="true">
+                <stringProp name="hostname">${sc_ip_f}</stringProp>
+                <stringProp name="port">${sc_port_f}</stringProp>
+                <boolProp name="waitresponse">true</boolProp>
+                <boolProp name="closechannel">true</boolProp>
+                <stringProp name="timeout">10000</stringProp>
+                <stringProp name="data">[c]&#xd;
+encrypt = mhxy&#xd;
+order = host&#xd;
+&#xd;
+[h]&#xd;
+4@protocolversion = 59&#xd;
+1@cmdid = 9&#xd;
+s@peerid = ${peer_id}&#xd;
+a@array = *</stringProp>
+                <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+              </kg.apc.jmeter.samplers.UDPSampler>
+              <hashTree>
+                <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="P2P Assertion" enabled="true">
+                  <stringProp name="P2PAssertion.txt">[c]
+encrypt = mhxy
+order = host
+
+[h]
+!4@protocolversion = 59
+1@cmdid = 246
+1@result = 1
+2@MaxSupernodeNumber = *
+{&quot;value&quot;: &quot;a@supernodelist = *&quot;,&quot;array&quot;: [
+	[{&quot;value&quot;: &quot;s@peerid = *&quot;},{&quot;value&quot;: &quot;!i@ip = *&quot;},{&quot;value&quot;: &quot;2@port = *&quot;}]
+]}</stringProp>
+                  <stringProp name="Property.txt">supernodelist,peerid,ip,port</stringProp>
+                </org.apache.jmeter.assertions.P2PAssertion>
+                <hashTree/>
+              </hashTree>
+              <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="write natserver ip list to file" enabled="true">
+                <stringProp name="BeanShellSampler.query">String supernodelist = bsh.args[0];
+String peerid = bsh.args[1];
+String ip = bsh.args[2];
+String port = bsh.args[3];
+String fileName = bsh.args[4];
+File file = new File(fileName);
+Set valueSet = new HashSet();
+
+//Get ip list from file and add to set
+if(file.exists()) {
+	BufferedReader reader = new BufferedReader(new FileReader(file));
+	String line = &quot;&quot;;
+	while((line = reader.readLine()) != null) {
+		valueSet.add(line);
+	}
+	reader.close();
+}
+
+
+
+int length = Integer.parseInt(supernodelist);
+String[] peerids = peerid.split(&quot;\t&quot;);
+String[] ips = ip.split(&quot;\t&quot;);
+String[] ports = port.split(&quot;\t&quot;);
+
+PrintWriter out = new PrintWriter(new FileWriter(file, true));
+for(int i = 0; i &lt; length; i++) {
+	String value = peerids[i] + &quot;,&quot; + ips[i] + &quot;,&quot; + ports[i];
+	if(!valueSet.contains(value)) {
+		out.println(value);
+		valueSet.add(value);
+		//System.out.println(&quot;ADD &quot; + value + &quot; !!!&quot;);
+	}
+}
+out.close();</stringProp>
+                <stringProp name="BeanShellSampler.filename"></stringProp>
+                <stringProp name="BeanShellSampler.parameters">${supernodelist} ${peerid} ${ip} ${port} ${natserver_list_file}</stringProp>
+                <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+              </BeanShellSampler>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">${timer}</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断失败次数" enabled="true">
+          <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
+int tryTimes = Integer.parseInt(bsh.args[0]);
+String ip = bsh.args[1];
+
+System.out.println(ip + &quot; fail_times = &quot; + failTimes);
+if(failTimes &gt;= tryTimes) {
+	System.out.println(ip + &quot; FAIL !!!!!!!!!!!!!!!!!!!!!&quot;);
+}</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times} ${sc_ip_f}</stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+      </hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1476761137000</longProp>
+        <longProp name="ThreadGroup.end_time">1476761137000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </PostThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="natserver list file config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">utf-8</stringProp>
+          <stringProp name="filename">${natserver_list_file}</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">ns_peerid_f,ns_ip_f,ns_port_f</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="初始化循环条件" enabled="true">
+          <stringProp name="BeanShellSampler.query">vars.put(&quot;left_times&quot;,bsh.args[0]);
+vars.put(&quot;continue&quot;, &quot;true&quot;);
+vars.put(&quot;fail_times&quot;, &quot;0&quot;);</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times}</stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
+          <stringProp name="WhileController.condition">${continue}</stringProp>
+        </WhileController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="循环次数减一" enabled="true">
+            <stringProp name="BeanShellSampler.query">int leftTimes = Integer.parseInt(vars.get(&quot;left_times&quot;));
+leftTimes--;
+vars.put(&quot;left_times&quot;,leftTimes + &quot;&quot;);
+
+boolean isContinue = Boolean.parseBoolean(vars.get(&quot;continue&quot;));
+isContinue = false;
+vars.put(&quot;continue&quot;, isContinue + &quot;&quot;);
+
+vars.put(&quot;new_loop&quot;, &quot;true&quot;);</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="监听区域" enabled="true"/>
+          <hashTree>
+            <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="监听是否失败" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">int leftTimes =Integer.parseInt(vars.get(&quot;left_times&quot;));
+int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
+boolean isContinue = Boolean.parseBoolean(vars.get(&quot;continue&quot;));
+boolean isNewLoop = Boolean.parseBoolean(vars.get(&quot;new_loop&quot;));
+
+if(!sampleResult.isSuccessful()) {
+	if(isNewLoop) {
+		failTimes++;
+		vars.put(&quot;new_loop&quot;, &quot;false&quot;);
+	}
+	isContinue = true;
+}
+if(leftTimes &lt;= 0) {
+	isContinue = false;	
+}
+
+vars.put(&quot;continue&quot;, isContinue + &quot;&quot;);
+vars.put(&quot;fail_times&quot;, failTimes + &quot;&quot;);</stringProp>
+            </BeanShellListener>
+            <hashTree/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="验证natserver" enabled="true"/>
+            <hashTree>
+              <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="1_UDP_Ping_other_${ns_ip_f}" enabled="true">
+                <stringProp name="hostname">${ns_ip_f}</stringProp>
+                <stringProp name="port">${ns_port_f}</stringProp>
+                <boolProp name="waitresponse">true</boolProp>
+                <boolProp name="closechannel">true</boolProp>
+                <stringProp name="timeout">10000</stringProp>
+                <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 12&#xd;
+s@PeerID = ${other_peer_id}&#xd;
+4@NatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+                <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+              </kg.apc.jmeter.samplers.UDPSampler>
+              <hashTree>
+                <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="ping回包断言" enabled="true">
+                  <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 243
+s@PeerID = *</stringProp>
+                  <stringProp name="Property.txt">PeerID</stringProp>
+                </org.apache.jmeter.assertions.P2PAssertion>
+                <hashTree/>
+                <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="peerid一致断言" enabled="true">
+                  <stringProp name="BeanShellAssertion.query">if (!bsh.args[1].equals(bsh.args[2])) {
+	
+	Failure=true ;
+	FailureMessage =bsh.args[0] + &quot; info is wrong.\r\nThe peerid that got from sncenter is &quot; + 
+				bsh.args[2] + &quot;, but actual peerid is &quot; + bsh.args[1];
+}
+</stringProp>
+                  <stringProp name="BeanShellAssertion.filename"></stringProp>
+                  <stringProp name="BeanShellAssertion.parameters">${ns_ip_f} ${PeerID} ${ns_peerid_f}</stringProp>
+                  <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+                </BeanShellAssertion>
+                <hashTree/>
+              </hashTree>
+              <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="2_UDP_CallSomeone_${ns_ip_f}_ok" enabled="true">
+                <stringProp name="hostname">${ns_ip_f}</stringProp>
+                <stringProp name="port">${ns_port_f}</stringProp>
+                <boolProp name="waitresponse">true</boolProp>
+                <boolProp name="closechannel">true</boolProp>
+                <stringProp name="timeout">10000</stringProp>
+                <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 13&#xd;
+s@MyPeerID = ${peer_id}&#xd;
+s@OtherPeerID = ${other_peer_id}&#xd;
+2@MyDummyPort = 666&#xd;
+4@MyNatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+                <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+              </kg.apc.jmeter.samplers.UDPSampler>
+              <hashTree>
+                <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="${other_peer_id} is online" enabled="true">
+                  <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 242
+s@SnPeerId = *
+s@RemotePeerId = ${other_peer_id}
+1@RemoteIsOnline = 1
+!i@RemoteIp = *
+2@RemotePort = *
+y@left = *</stringProp>
+                  <stringProp name="Property.txt"></stringProp>
+                </org.apache.jmeter.assertions.P2PAssertion>
+                <hashTree/>
+              </hashTree>
+              <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="3_UDP_Logout_other_${ns_ip_f}" enabled="true">
+                <stringProp name="hostname">${ns_ip_f}</stringProp>
+                <stringProp name="port">${ns_port_f}</stringProp>
+                <boolProp name="waitresponse">false</boolProp>
+                <boolProp name="closechannel">true</boolProp>
+                <stringProp name="timeout">10000</stringProp>
+                <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 20&#xd;
+s@PeerID = ${other_peer_id}</stringProp>
+                <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+              </kg.apc.jmeter.samplers.UDPSampler>
+              <hashTree/>
+              <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="4_UDP_CallSomeone_${ns_ip_f}_not_ok" enabled="true">
+                <stringProp name="hostname">${ns_ip_f}</stringProp>
+                <stringProp name="port">${ns_port_f}</stringProp>
+                <boolProp name="waitresponse">true</boolProp>
+                <boolProp name="closechannel">true</boolProp>
+                <stringProp name="timeout">10000</stringProp>
+                <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 13&#xd;
+s@MyPeerID = ${peer_id}&#xd;
+s@OtherPeerID = ${other_peer_id}&#xd;
+2@MyDummyPort = 666&#xd;
+4@MyNatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+                <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+              </kg.apc.jmeter.samplers.UDPSampler>
+              <hashTree>
+                <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="${other_peer_id} is not online" enabled="true">
+                  <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 242
+s@SnPeerId = *
+s@RemotePeerId = ${other_peer_id}
+1@RemoteIsOnline = 0
+!i@RemoteIp = *
+2@RemotePort = *
+y@left = *</stringProp>
+                  <stringProp name="Property.txt"></stringProp>
+                </org.apache.jmeter.assertions.P2PAssertion>
+                <hashTree/>
+              </hashTree>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">${timer}</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断失败次数" enabled="true">
+          <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
+int tryTimes = Integer.parseInt(bsh.args[0]);
+String ip = bsh.args[1];
+
+System.out.println(ip + &quot; fail_times = &quot; + failTimes);
+if(failTimes &gt;= tryTimes) {
+	System.out.println(ip + &quot; FAIL !!!!!!!!!!!!!!!!!!!!!&quot;);
+}</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times} ${ns_ip_f}</stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1476761137000</longProp>
+        <longProp name="ThreadGroup.end_time">1476761137000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </PostThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="natserver list file config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">utf-8</stringProp>
+          <stringProp name="filename">${natserver_list_file}</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">ns_peerid_f,ns_ip_f,ns_port_f</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="验证natserver" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="1_UDP_Ping_other_${ns_ip_f}" enabled="true">
+            <stringProp name="hostname">${ns_ip_f}</stringProp>
+            <stringProp name="port">${ns_port_f}</stringProp>
+            <boolProp name="waitresponse">true</boolProp>
+            <boolProp name="closechannel">true</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 12&#xd;
+s@PeerID = ${other_peer_id}&#xd;
+4@NatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+            <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+          </kg.apc.jmeter.samplers.UDPSampler>
+          <hashTree>
+            <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="ping回包断言" enabled="true">
+              <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 243
+s@PeerID = *</stringProp>
+              <stringProp name="Property.txt">PeerID</stringProp>
+            </org.apache.jmeter.assertions.P2PAssertion>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="peerid一致断言" enabled="true">
+              <stringProp name="BeanShellAssertion.query">if (!bsh.args[1].equals(bsh.args[2])) {
+	
+	Failure=true ;
+	FailureMessage =bsh.args[0] + &quot; info is wrong.\r\nThe peerid that got from sncenter is &quot; + 
+				bsh.args[2] + &quot;, but actual peerid is &quot; + bsh.args[1];
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters">${ns_ip_f} ${PeerID} ${ns_peerid_f}</stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="2_UDP_CallSomeone_${ns_ip_f}_ok" enabled="true">
+            <stringProp name="hostname">${ns_ip_f}</stringProp>
+            <stringProp name="port">${ns_port_f}</stringProp>
+            <boolProp name="waitresponse">true</boolProp>
+            <boolProp name="closechannel">true</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 13&#xd;
+s@MyPeerID = ${peer_id}&#xd;
+s@OtherPeerID = ${other_peer_id}&#xd;
+2@MyDummyPort = 666&#xd;
+4@MyNatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+            <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+          </kg.apc.jmeter.samplers.UDPSampler>
+          <hashTree>
+            <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="${other_peer_id} is online" enabled="true">
+              <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 242
+s@SnPeerId = *
+s@RemotePeerId = ${other_peer_id}
+1@RemoteIsOnline = 1
+!i@RemoteIp = *
+2@RemotePort = *
+y@left = *</stringProp>
+              <stringProp name="Property.txt"></stringProp>
+            </org.apache.jmeter.assertions.P2PAssertion>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="3_UDP_Logout_other_${ns_ip_f}" enabled="true">
+            <stringProp name="hostname">${ns_ip_f}</stringProp>
+            <stringProp name="port">${ns_port_f}</stringProp>
+            <boolProp name="waitresponse">false</boolProp>
+            <boolProp name="closechannel">true</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 20&#xd;
+s@PeerID = ${other_peer_id}</stringProp>
+            <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+          </kg.apc.jmeter.samplers.UDPSampler>
+          <hashTree/>
+          <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="4_UDP_CallSomeone_${ns_ip_f}_not_ok" enabled="true">
+            <stringProp name="hostname">${ns_ip_f}</stringProp>
+            <stringProp name="port">${ns_port_f}</stringProp>
+            <boolProp name="waitresponse">true</boolProp>
+            <boolProp name="closechannel">true</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="data">[config]&#xd;
+order = host&#xd;
+encrypt = mhxy&#xd;
+&#xd;
+[header]&#xd;
+4@ProtocolVersion = 59&#xd;
+1@CmdType = 13&#xd;
+s@MyPeerID = ${peer_id}&#xd;
+s@OtherPeerID = ${other_peer_id}&#xd;
+2@MyDummyPort = 666&#xd;
+4@MyNatType = 1&#xd;
+2@LatestExternalPort = 333&#xd;
+4@TimeElapsed = 0&#xd;
+4@DeltaPort = 0&#xd;
+2@UDTVersion = 1&#xd;
+2@LocalPort = 555&#xd;
+1@MhxyVersion = 1</stringProp>
+            <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+          </kg.apc.jmeter.samplers.UDPSampler>
+          <hashTree>
+            <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="${other_peer_id} is not online" enabled="true">
+              <stringProp name="P2PAssertion.txt">[config]
+order = host
+encrypt = mhxy
+
+[header]
+4@ProtocolVersion = 59
+1@CmdType = 242
+s@SnPeerId = *
+s@RemotePeerId = ${other_peer_id}
+1@RemoteIsOnline = 0
+!i@RemoteIp = *
+2@RemotePort = *
+y@left = *</stringProp>
+              <stringProp name="Property.txt"></stringProp>
+            </org.apache.jmeter.assertions.P2PAssertion>
+            <hashTree/>
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+              <stringProp name="ConstantTimer.delay">500</stringProp>
+            </ConstantTimer>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="work " enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1476677628000</longProp>
+        <longProp name="ThreadGroup.end_time">1476677628000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="sncenter list file config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding">utf-8</stringProp>
+          <stringProp name="filename">${sncenter_list_file}</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">sc_ip_f,sc_port_f,sc_comment</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="获取并存储natserver" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.samplers.UDPSampler guiclass="kg.apc.jmeter.samplers.UDPSamplerGui" testclass="kg.apc.jmeter.samplers.UDPSampler" testname="UDP_GetNcList_${sc_ip_f}_${sc_comment}" enabled="true">
+            <stringProp name="hostname">${sc_ip_f}</stringProp>
+            <stringProp name="port">${sc_port_f}</stringProp>
+            <boolProp name="waitresponse">true</boolProp>
+            <boolProp name="closechannel">true</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="data">[c]&#xd;
+encrypt = mhxy&#xd;
+order = host&#xd;
+&#xd;
+[h]&#xd;
+4@protocolversion = 59&#xd;
+1@cmdid = 9&#xd;
+s@peerid = ${peer_id}&#xd;
+a@array = *</stringProp>
+            <stringProp name="encodeclass">kg.apc.jmeter.samplers.P2PUDP</stringProp>
+          </kg.apc.jmeter.samplers.UDPSampler>
+          <hashTree>
+            <org.apache.jmeter.assertions.P2PAssertion guiclass="org.apache.jmeter.assertions.gui.P2PAssertionGUI" testclass="org.apache.jmeter.assertions.P2PAssertion" testname="P2P Assertion" enabled="true">
+              <stringProp name="P2PAssertion.txt">[c]
+encrypt = mhxy
+order = host
+
+[h]
+!4@protocolversion = 59
+1@cmdid = 246
+1@result = 1
+2@MaxSupernodeNumber = *
+{&quot;value&quot;: &quot;a@supernodelist = *&quot;,&quot;array&quot;: [
+	[{&quot;value&quot;: &quot;s@peerid = *&quot;},{&quot;value&quot;: &quot;!i@ip = *&quot;},{&quot;value&quot;: &quot;2@port = *&quot;}]
+]}</stringProp>
+              <stringProp name="Property.txt">supernodelist,peerid,ip,port</stringProp>
+            </org.apache.jmeter.assertions.P2PAssertion>
+            <hashTree/>
+          </hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="write natserver ip list to file" enabled="true">
+            <stringProp name="BeanShellSampler.query">String supernodelist = bsh.args[0];
+String peerid = bsh.args[1];
+String ip = bsh.args[2];
+String port = bsh.args[3];
+String fileName = bsh.args[4];
+File file = new File(fileName);
+Set valueSet = new HashSet();
+
+//Get ip list from file and add to set
+if(file.exists()) {
+	BufferedReader reader = new BufferedReader(new FileReader(file));
+	String line = &quot;&quot;;
+	while((line = reader.readLine()) != null) {
+		valueSet.add(line);
+	}
+	reader.close();
+}
+
+
+
+int length = Integer.parseInt(supernodelist);
+String[] peerids = peerid.split(&quot;\t&quot;);
+String[] ips = ip.split(&quot;\t&quot;);
+String[] ports = port.split(&quot;\t&quot;);
+
+PrintWriter out = new PrintWriter(new FileWriter(file, true));
+for(int i = 0; i &lt; length; i++) {
+	String value = peerids[i] + &quot;,&quot; + ips[i] + &quot;,&quot; + ports[i];
+	if(!valueSet.contains(value)) {
+		out.println(value);
+		valueSet.add(value);
+		System.out.println(&quot;ADD &quot; + value + &quot; !!!&quot;);
+	}
+}
+out.close();</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters">${supernodelist} ${peerid} ${ip} ${port} ${natserver_list_file}</stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
