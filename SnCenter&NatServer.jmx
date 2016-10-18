@@ -15,13 +15,15 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="sncenter_list_file" elementType="Argument">
             <stringProp name="Argument.name">sncenter_list_file</stringProp>
-            <stringProp name="Argument.value">${__P(sncenter_list_file,C:\Users\zhangmin\Desktop\sncenter_list.csv)}</stringProp>
+            <stringProp name="Argument.value">${__P(sncenter_list_file,sncenter_list.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">C:\Users\zhangmin\Desktop\sncenter_list.csv</stringProp>
           </elementProp>
           <elementProp name="natserver_list_file" elementType="Argument">
             <stringProp name="Argument.name">natserver_list_file</stringProp>
-            <stringProp name="Argument.value">${__P(natserver_list_file,C:\Users\zhangmin\Desktop\natserver_list.csv)}</stringProp>
+            <stringProp name="Argument.value">${__P(natserver_list_file,natserver_list.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">C:\Users\zhangmin\Desktop\natserver_list.csv</stringProp>
           </elementProp>
           <elementProp name="try_times" elementType="Argument">
             <stringProp name="Argument.name">try_times</stringProp>
