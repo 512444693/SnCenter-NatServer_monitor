@@ -44,7 +44,7 @@
 
     </description>
     
-    <property name="jmeter.home" value="/opt/apache-jmeter-3.0"/>
+    <property name="jmeter.home" value="${basedir}/.."/>
     <property name="testpath" value="${user.dir}"/>
     <property name="report.title" value="Jmeter Test Results"/>
     
