@@ -64,6 +64,12 @@
 - 模拟用户B发送打孔协议，并断言用户A不在线
 
 ## 其它
+### 参数
 - 通过-Jtimer=X 来指定协议之间的思考时间
 - 通过-Jtry_times=X 来指定一组协议的尝试次数
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/12.jpg)
+
+### 说明
+之所以先用Jmeter测试生成文件，再用Ant通过文件生成报告，而不是直接用Ant调用Jmeter，是由于两个原因
+- 由于某些原因，Ant调用Jmeter生成的natserver_list.csv文件不在当前目录，而在Jmeter的bin目录下
+- Ant调用Jmeter无法通过-J指定参数
