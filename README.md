@@ -7,6 +7,7 @@
 ## 功能
 ### JMeter
 - jmeter会遍历sncenter_list.csv中所有的sncenter，向其发送协议取得所有的natserver的信息后存储到**natserver_list.csv**中，并将natserver去重
+
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/2.jpg)
 - jmeter会遍历natserver_list.csv中的natserver向其发送各种协议并做断言
 - 向某个sncenter发送协议获取natserver信息是一组协议；向某个natserver发送协议并断言是一组协议
@@ -29,6 +30,7 @@
 ### 遍历
 以work线程组为例，演示如何遍历sncenter_list.csv
 - 线程组中循环为Forever
+
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/4.jpg)
 - 在CSV Data Set Config中，配置Recycle on EOF 为false，配置Stop thread on EOF为true
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/5.jpg)
@@ -36,6 +38,7 @@
 
 ### 失败重试
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/7.jpg)
+
 我们在work和tearDown线程组中均实现了失败重试；以work线程组为例来看一下
 - 通过"初始化循环条件"、"循环次数减一"**BeanShell Sampler**来控制可循环次数
 - 通过"监听是否失败"**BeanShell Listener**来判断是否失败，是否需要重试
