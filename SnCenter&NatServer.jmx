@@ -280,7 +280,7 @@ String ip = bsh.args[1];
 
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
-	System.out.println(ip + &quot; FAIL !!!!!!!!!!!!!!!!!!!!!&quot;);
+	System.out.println(ip + &quot; FAIL!!!!!&quot;);
 }</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
           <stringProp name="BeanShellSampler.parameters">${try_times} ${sc_ip_f}</stringProp>
@@ -539,7 +539,7 @@ String ip = bsh.args[1];
 
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
-	System.out.println(ip + &quot; FAIL !!!!!!!!!!!!!!!!!!!!!&quot;);
+	System.out.println(ip + &quot; FAIL!!!!!&quot;);
 }</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
           <stringProp name="BeanShellSampler.parameters">${try_times} ${ns_ip_f}</stringProp>
