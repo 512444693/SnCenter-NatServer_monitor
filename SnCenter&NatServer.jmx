@@ -273,7 +273,7 @@ out.close();</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断失败次数" enabled="true">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断是否失败" enabled="true">
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
@@ -532,7 +532,7 @@ y@left = *</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断失败次数" enabled="true">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断是否失败" enabled="true">
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
