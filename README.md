@@ -62,3 +62,8 @@
 - 模拟用户B发送打孔协议，并断言用户A在线
 - 模拟用户A发送logout包
 - 模拟用户B发送打孔协议，并断言用户A不在线
+
+## 其它
+- 通过-Jtimer=X 来指定协议之间的思考时间
+- 通过-Jtry_times=X 来指定一组协议的尝试次数
+![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/12.jpg)
