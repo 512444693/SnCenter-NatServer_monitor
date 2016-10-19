@@ -12,15 +12,21 @@
 - jmeter会遍历natserver_list.csv中的natserver向其发送各种协议并做断言
 - 向某个sncenter发送协议获取natserver信息是一组协议；向某个natserver发送协议并断言是一组协议
 - 若某一组协议发送失败(一个协议失败即视为失败)，则可重试，总共可重试**6次**(可配)
-- 若某一组协议重试了所有次数，但都失败，则视为服务器异常，打印出与之相关的服务器ip等信息？？？？？？？？？
+- 若某一组协议重试了所有次数，但都失败，则视为服务器异常，在控制台打印出"XXX.XXX.XXX.XXX FAIL!!!!!"
 
 ### jenkins
-- 每多少小时执行一次？？？
-- 若JMeter监控到服务器(sncenter或natserver)有异常，发送邮件给相关人员
+- 定时构建执行
+- 若JMeter监控到有服务器(sncenter或natserver)异常，发送邮件给相关人员
 
 
 
 ## 具体
+### 检测异常并发送邮件
+- 增加构建后操作步骤"Extended E-mail Notification"
+- 点击"Add Trigger"添加"Script_After Build"
+- 若在构建日志中发现"FAIL!!!!!"字符串，则发送邮件
+![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/11.jpg)
+
 ### 线程组
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/3.jpg)
 - setUp Thread Group只有一个功能，**删除natserver_list.csv**
