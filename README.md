@@ -70,6 +70,7 @@
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/12.jpg)
 
 ### 说明
+![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/13.jpg)
 之所以先用Jmeter测试生成文件，再用Ant通过文件生成报告，而不是直接用Ant调用Jmeter，是由于两个原因
 - 由于某些原因，Ant调用Jmeter生成的natserver_list.csv文件不在当前目录，而在Jmeter的bin目录下
 - Ant调用Jmeter无法通过-J指定参数
