@@ -524,6 +524,10 @@ y@left = *</stringProp>
                   <stringProp name="Property.txt"></stringProp>
                 </org.apache.jmeter.assertions.P2PAssertion>
                 <hashTree/>
+                <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                  <stringProp name="ConstantTimer.delay">500</stringProp>
+                </ConstantTimer>
+                <hashTree/>
               </hashTree>
               <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
                 <stringProp name="ConstantTimer.delay">${timer}</stringProp>
