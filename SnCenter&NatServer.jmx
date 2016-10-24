@@ -25,6 +25,11 @@
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">C:\Users\zhangmin\Desktop\natserver_list.csv</stringProp>
           </elementProp>
+          <elementProp name="report_file" elementType="Argument">
+            <stringProp name="Argument.name">report_file</stringProp>
+            <stringProp name="Argument.value">${__P(report_file,report.csv)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="try_times" elementType="Argument">
             <stringProp name="Argument.name">try_times</stringProp>
             <stringProp name="Argument.value">${__P(try_times,6)}</stringProp>
@@ -97,13 +102,18 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </SetupThreadGroup>
       <hashTree>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="delete natserver ip list file" enabled="true">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="delete generated file" enabled="true">
           <stringProp name="BeanShellSampler.query">File file = new File(bsh.args[0]);
+if(file.exists()) {
+	file.delete();	
+}
+
+file = new File(bsh.args[1]);
 if(file.exists()) {
 	file.delete();	
 }</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
-          <stringProp name="BeanShellSampler.parameters">${natserver_list_file}</stringProp>
+          <stringProp name="BeanShellSampler.parameters">${natserver_list_file} ${report_file}</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
         </BeanShellSampler>
         <hashTree/>
@@ -277,13 +287,37 @@ out.close();</stringProp>
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
+File file = new File(bsh.args[2]);
+String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
 
+if(file.exists()) {
+	BufferedReader in = new BufferedReader(new FileReader(file));
+	if((tmp = in.readLine()) != null) {
+		firstLine = tmp;
+	}
+	if((tmp = in.readLine()) != null) {
+		secondLine = tmp;
+	}
+	in.close();
+	file.delete();
+}
+
+PrintWriter out = new PrintWriter(new FileWriter(file));
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
 	System.out.println(ip + &quot; FAIL!!!!!&quot;);
-}</stringProp>
+}
+
+if(failTimes &gt; 0) {
+	firstLine += ip + &quot;,&quot;;
+	secondLine += failTimes +  &quot;,&quot;;
+}
+out.println(firstLine);
+out.print(secondLine);
+
+out.close();</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
-          <stringProp name="BeanShellSampler.parameters">${try_times} ${sc_ip_f}</stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times} ${sc_ip_f} ${report_file}</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
         </BeanShellSampler>
         <hashTree/>
@@ -540,13 +574,37 @@ y@left = *</stringProp>
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
+File file = new File(bsh.args[2]);
+String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
 
+if(file.exists()) {
+	BufferedReader in = new BufferedReader(new FileReader(file));
+	if((tmp = in.readLine()) != null) {
+		firstLine = tmp;
+	}
+	if((tmp = in.readLine()) != null) {
+		secondLine = tmp;
+	}
+	in.close();
+	file.delete();
+}
+
+PrintWriter out = new PrintWriter(new FileWriter(file));
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
 	System.out.println(ip + &quot; FAIL!!!!!&quot;);
-}</stringProp>
+}
+
+if(failTimes &gt; 0) {
+	firstLine += ip + &quot;,&quot;;
+	secondLine += failTimes +  &quot;,&quot;;
+}
+out.println(firstLine);
+out.print(secondLine);
+
+out.close();</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
-          <stringProp name="BeanShellSampler.parameters">${try_times} ${ns_ip_f}</stringProp>
+          <stringProp name="BeanShellSampler.parameters">${try_times} ${ns_ip_f} ${report_file}</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
         </BeanShellSampler>
         <hashTree/>
