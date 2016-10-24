@@ -77,6 +77,7 @@
         3,4,2,
 - 下载"Plot Plugin"插件，添加构建后步骤"Plot build data"，并配置
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/15.jpg)
+
 ### 说明
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/13.jpg)
 之所以先用Jmeter测试生成文件，再用Ant通过文件生成报告，而不是直接用Ant调用Jmeter，是由于两个原因
