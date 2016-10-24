@@ -29,7 +29,7 @@
 
 ### 线程组
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/3.jpg)
-- setUp Thread Group只有一个功能，**删除natserver_list.csv**和**report.csv**
+- setUp Thread Group只有一个功能，**删除natserver_list.csv和report.csv**
 - work 线程组的功能是，遍历sncenter_list.csv中的**sncenter**
 - tearDown Thread Group的功能是，遍历natserver_list.csv中的**natserver**
 
