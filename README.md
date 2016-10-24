@@ -29,7 +29,7 @@
 
 ### 线程组
 ![image](https://github.com/512444693/resources/blob/master/SnCenter-NatServer_monitor/3.jpg)
-- setUp Thread Group只有一个功能，**删除natserver_list.csv**
+- setUp Thread Group只有一个功能，**删除natserver_list.csv**和**report.csv**
 - work 线程组的功能是，遍历sncenter_list.csv中的**sncenter**
 - tearDown Thread Group的功能是，遍历natserver_list.csv中的**natserver**
 
@@ -73,7 +73,7 @@
 - 如果某个ip的失败次数大于0，将该数据写入report.csv中，格式如下
 
         192.168.1.1,192.168.1.2,192.168.1.3,
-        3,4,2
+        3,4,2,
 - 下载"Plot Plugin"插件，添加构建后步骤"Plot build data"，并配置
 
 ### 说明
