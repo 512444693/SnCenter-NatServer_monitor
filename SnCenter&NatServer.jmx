@@ -37,7 +37,7 @@
           </elementProp>
           <elementProp name="timer" elementType="Argument">
             <stringProp name="Argument.name">timer</stringProp>
-            <stringProp name="Argument.value">${__P(timer,500)}</stringProp>
+            <stringProp name="Argument.value">${__P(timer,100)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="peer_id" elementType="Argument">
@@ -287,35 +287,46 @@ out.close();</stringProp>
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
-File file = new File(bsh.args[2]);
-String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
 
-if(file.exists()) {
-	BufferedReader in = new BufferedReader(new FileReader(file));
-	if((tmp = in.readLine()) != null) {
-		firstLine = tmp;
-	}
-	if((tmp = in.readLine()) != null) {
-		secondLine = tmp;
-	}
-	in.close();
-	file.delete();
-}
-
-PrintWriter out = new PrintWriter(new FileWriter(file));
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
 	System.out.println(ip + &quot; FAIL!!!!!&quot;);
 }
 
-if(failTimes &gt; 0) {
-	firstLine += ip + &quot;,&quot;;
-	secondLine += failTimes +  &quot;,&quot;;
-}
-out.println(firstLine);
-out.print(secondLine);
 
-out.close();</stringProp>
+if(failTimes &gt; 0) {
+	File file = new File(bsh.args[2]);
+	String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
+	
+	if(file.exists()) {
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		if((tmp = in.readLine()) != null) {
+			firstLine = tmp;
+		}
+		if((tmp = in.readLine()) != null) {
+			secondLine = tmp;
+		}
+		in.close();
+		file.delete();
+	}
+	firstLine += &quot;,&quot; + ip;
+	secondLine += &quot;,&quot; + failTimes;
+	
+	if(firstLine.charAt(0) == &apos;,&apos;) {
+		firstLine = firstLine.substring(1, firstLine.length());
+	}
+	
+	if(secondLine.charAt(0) == &apos;,&apos;) {
+		secondLine = secondLine.substring(1, secondLine.length());
+	}
+
+	PrintWriter out = new PrintWriter(new FileWriter(file));
+
+	out.println(firstLine);
+	out.print(secondLine);
+
+	out.close();
+}</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
           <stringProp name="BeanShellSampler.parameters">${try_times} ${sc_ip_f} ${report_file}</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
@@ -571,38 +582,50 @@ y@left = *</stringProp>
           </hashTree>
         </hashTree>
         <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="判断是否失败" enabled="true">
+          <stringProp name="TestPlan.comments">失败次数大于等于${try_times}，控制台打印&quot;ip FAIL!!!!!!&quot;；如果失败次数大于0，写入${report_file}文件中</stringProp>
           <stringProp name="BeanShellSampler.query">int failTimes =Integer.parseInt(vars.get(&quot;fail_times&quot;));
 int tryTimes = Integer.parseInt(bsh.args[0]);
 String ip = bsh.args[1];
-File file = new File(bsh.args[2]);
-String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
 
-if(file.exists()) {
-	BufferedReader in = new BufferedReader(new FileReader(file));
-	if((tmp = in.readLine()) != null) {
-		firstLine = tmp;
-	}
-	if((tmp = in.readLine()) != null) {
-		secondLine = tmp;
-	}
-	in.close();
-	file.delete();
-}
-
-PrintWriter out = new PrintWriter(new FileWriter(file));
 System.out.println(ip + &quot; fail_times = &quot; + failTimes);
 if(failTimes &gt;= tryTimes) {
 	System.out.println(ip + &quot; FAIL!!!!!&quot;);
 }
 
-if(failTimes &gt; 0) {
-	firstLine += ip + &quot;,&quot;;
-	secondLine += failTimes +  &quot;,&quot;;
-}
-out.println(firstLine);
-out.print(secondLine);
 
-out.close();</stringProp>
+if(failTimes &gt; 0) {
+	File file = new File(bsh.args[2]);
+	String firstLine = &quot;&quot;, secondLine = &quot;&quot;, tmp = &quot;&quot;;
+	
+	if(file.exists()) {
+		BufferedReader in = new BufferedReader(new FileReader(file));
+		if((tmp = in.readLine()) != null) {
+			firstLine = tmp;
+		}
+		if((tmp = in.readLine()) != null) {
+			secondLine = tmp;
+		}
+		in.close();
+		file.delete();
+	}
+	firstLine += &quot;,&quot; + ip;
+	secondLine += &quot;,&quot; + failTimes;
+	
+	if(firstLine.charAt(0) == &apos;,&apos;) {
+		firstLine = firstLine.substring(1, firstLine.length());
+	}
+	
+	if(secondLine.charAt(0) == &apos;,&apos;) {
+		secondLine = secondLine.substring(1, secondLine.length());
+	}
+
+	PrintWriter out = new PrintWriter(new FileWriter(file));
+
+	out.println(firstLine);
+	out.print(secondLine);
+
+	out.close();
+}</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
           <stringProp name="BeanShellSampler.parameters">${try_times} ${ns_ip_f} ${report_file}</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
